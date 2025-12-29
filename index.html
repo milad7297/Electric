@@ -3,905 +3,618 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قوانین مدارهای الکتریکی - ابزار آموزشی</title>
+    <title>مدارهای الکتریکی - پلتفرم آموزشی</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <link rel="stylesheet" href="lab.css">
+
 <body>
-    <div class="container">
-        <header>
-            <h1>قوانین مدارهای الکتریکی</h1>
-            <p class="subtitle">ابزار یادگیری تعاملی</p>
+    <!-- Background with circuit pattern -->
+    <div class="background-overlay"></div>
+    
+    <!-- Main Container -->
+    <div class="main-wrapper">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-dot"></div>
+                    <span class="logo-text">مدارهای / الکتریکی</span>
+                </div>
+                <div class="header-title">
+                    <h1>مدارهای الکتریکی</h1>
+                </div>
+            </div>
         </header>
 
-        <!-- Navigation Bar -->
-        <nav class="nav-bar">
-            <button class="nav-btn active" data-section="ohms-law">قانون اهم</button>
-            <button class="nav-btn" data-section="kcl">قانون جریان (KCL)</button>
-            <button class="nav-btn" data-section="kvl">قانون ولتاژ (KVL)</button>
-            <button class="nav-btn" data-section="basic-elements">عناصر پایه</button>
-            <button class="nav-btn" data-section="sources">منابع</button>
-            <button class="nav-btn" data-section="series-parallel">سری و موازی</button>
-            <button class="nav-btn" data-section="history">تاریخچه</button>
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <a href="#data" class="nav-link active" data-section="data">اطلاعات</a>
+                <a href="#creators" class="nav-link" data-section="creators">سازندگان</a>
+            </div>
         </nav>
 
-        <!-- Ohm's Law Section -->
-        <section id="ohms-law" class="content-section active">
-            <h2>قانون اهم</h2>
-            <p class="section-description">
-                قانون اهم بیان می‌کند که جریان (I) عبوری از یک رسانا بین دو نقطه، 
-                مستقیماً با ولتاژ (V) بین آن دو نقطه متناسب است و با مقاومت (R) نسبت معکوس دارد.
-            </p>
-
-            <div class="calculator">
-                <div class="input-group">
-                    <label for="voltage">
-                        <span class="label-text">ولتاژ (V)</span>
-                        <span class="value-display" id="voltage-value">12.0 V</span>
-                    </label>
-                    <input 
-                        type="range" 
-                        id="voltage" 
-                        min="0" 
-                        max="100" 
-                        step="0.1" 
-                        value="12"
-                        class="slider"
-                    >
-                    <div class="range-labels">
-                        <span>0 V</span>
-                        <span>100 V</span>
-                    </div>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Data Section -->
+            <section id="data" class="content-section active">
+                <!-- Sub Navigation for Data -->
+                <div class="data-nav">
+                    <button class="data-nav-btn active" data-subsection="ohms-law">قانون اهم</button>
+                    <button class="data-nav-btn" data-subsection="kcl">قانون جریان (KCL)</button>
+                    <button class="data-nav-btn" data-subsection="kvl">قانون ولتاژ (KVL)</button>
+                    <button class="data-nav-btn" data-subsection="basic-elements">عناصر پایه</button>
+                    <button class="data-nav-btn" data-subsection="sources">منابع</button>
+                    <button class="data-nav-btn" data-subsection="series-parallel">سری و موازی</button>
+                    <button class="data-nav-btn" data-subsection="history">تاریخچه</button>
                 </div>
 
-                <div class="input-group">
-                    <label for="resistance">
-                        <span class="label-text">مقاومت (R)</span>
-                        <span class="value-display" id="resistance-value">4.0 Ω</span>
-                    </label>
-                    <input 
-                        type="range" 
-                        id="resistance" 
-                        min="0.1" 
-                        max="100" 
-                        step="0.1" 
-                        value="4"
-                        class="slider"
-                    >
-                    <div class="range-labels">
-                        <span>0.1 Ω</span>
-                        <span>100 Ω</span>
-                    </div>
-                </div>
-
-                <div class="result-section">
-                    <div class="result-box">
-                        <div class="result-label">جریان (I)</div>
-                        <div class="result-value" id="current-value">3.00 A</div>
-                        <div class="formula">I = V / R</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- KCL Section -->
-        <section id="kcl" class="content-section">
-            <h2>قانون جریان کیرشهوف (KCL)</h2>
-            <p class="section-description">
-                قانون جریان کیرشهوف بیان می‌کند که مجموع جریان‌های ورودی به یک گره 
-                برابر با مجموع جریان‌های خروجی از آن گره است. این قانون بر اساس اصل بقای بار الکتریکی است.
-            </p>
-
-            <div class="calculator">
-                <div class="input-group">
-                    <label for="i1">
-                        <span class="label-text">جریان ورودی I₁</span>
-                        <span class="value-display" id="i1-value">5.0 A</span>
-                    </label>
-                    <input 
-                        type="range" 
-                        id="i1" 
-                        min="0" 
-                        max="20" 
-                        step="0.1" 
-                        value="5"
-                        class="slider"
-                    >
-                    <div class="range-labels">
-                        <span>0 A</span>
-                        <span>20 A</span>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="i2">
-                        <span class="label-text">جریان ورودی I₂</span>
-                        <span class="value-display" id="i2-value">3.0 A</span>
-                    </label>
-                    <input 
-                        type="range" 
-                        id="i2" 
-                        min="0" 
-                        max="20" 
-                        step="0.1" 
-                        value="3"
-                        class="slider"
-                    >
-                    <div class="range-labels">
-                        <span>0 A</span>
-                        <span>20 A</span>
-                    </div>
-                </div>
-
-                <div class="result-section">
-                    <div class="result-box">
-                        <div class="result-label">جریان خروجی I₃</div>
-                        <div class="result-value" id="i3-value">8.00 A</div>
-                        <div class="formula">I₃ = I₁ + I₂</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- KVL Section -->
-        <section id="kvl" class="content-section">
-            <h2>قانون ولتاژ کیرشهوف (KVL)</h2>
-            <p class="section-description">
-                قانون ولتاژ کیرشهوف بیان می‌کند که مجموع تمام افت‌های ولتاژ در هر حلقه بسته 
-                در یک مدار برابر با صفر است. به عبارت دیگر، ولتاژ منبع برابر با مجموع تمام افت‌های ولتاژ است.
-            </p>
-
-            <div class="calculator">
-                <div class="input-group">
-                    <label for="source-voltage">
-                        <span class="label-text">ولتاژ منبع (V)</span>
-                        <span class="value-display" id="source-voltage-value">12.0 V</span>
-                    </label>
-                    <input 
-                        type="range" 
-                        id="source-voltage" 
-                        min="0" 
-                        max="50" 
-                        step="0.1" 
-                        value="12"
-                        class="slider"
-                    >
-                    <div class="range-labels">
-                        <span>0 V</span>
-                        <span>50 V</span>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="v1">
-                        <span class="label-text">افت ولتاژ V₁</span>
-                        <span class="value-display" id="v1-value">5.0 V</span>
-                    </label>
-                    <input 
-                        type="range" 
-                        id="v1" 
-                        min="0" 
-                        max="50" 
-                        step="0.1" 
-                        value="5"
-                        class="slider"
-                    >
-                    <div class="range-labels">
-                        <span>0 V</span>
-                        <span>50 V</span>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="v2">
-                        <span class="label-text">افت ولتاژ V₂</span>
-                        <span class="value-display" id="v2-value">7.0 V</span>
-                    </label>
-                    <input 
-                        type="range" 
-                        id="v2" 
-                        min="0" 
-                        max="50" 
-                        step="0.1" 
-                        value="7"
-                        class="slider"
-                    >
-                    <div class="range-labels">
-                        <span>0 V</span>
-                        <span>50 V</span>
-                    </div>
-                </div>
-
-                <div class="result-section">
-                    <div class="result-box">
-                        <div class="result-label">مجموع افت‌های ولتاژ</div>
-                        <div class="result-value" id="voltage-sum-value">12.00 V</div>
-                        <div class="formula">V = V₁ + V₂</div>
-                        <div class="validation" id="kvl-validation">✓ معادله متعادل است</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- History Section -->
-        <section id="history" class="content-section">
-            <h2>تاریخچه قوانین مدار</h2>
-            
-            <div class="history-content">
-                <div class="history-item">
-                    <h3>گئورگ سیمون اهم (1789-1854)</h3>
-                    <p>
-                        گئورگ سیمون اهم فیزیک‌دان و ریاضی‌دان آلمانی بود که رابطه اساسی بین 
-                        ولتاژ، جریان و مقاومت را کشف کرد. در سال 1827، او اثر معروف خود با عنوان 
-                        "Die galvanische Kette, mathematisch bearbeitet" (مدار گالوانیکی بررسی شده از نظر ریاضی) را 
-                        منتشر کرد که قانون اهم را معرفی می‌کرد.
+                <!-- Ohm's Law Subsection -->
+                <div class="data-subsection active" id="ohms-law-subsection">
+                    <h2>قانون اهم</h2>
+                    <p class="subsection-description">
+                        قانون اهم بیان می‌کند که جریان (I) عبوری از یک رسانا بین دو نقطه، 
+                        مستقیماً با ولتاژ (V) بین آن دو نقطه متناسب است و با مقاومت (R) نسبت معکوس دارد.
                     </p>
-                    <p>
-                        کار اهم در ابتدا با تردید مواجه شد، اما در نهایت به یکی از اساسی‌ترین قوانین 
-                        در مهندسی برق تبدیل شد. واحد مقاومت الکتریکی، اهم (Ω)، به افتخار او نامگذاری شده است.
+
+                    <div class="calculator">
+                        <div class="input-group">
+                            <label for="voltage">
+                                <span class="label-text">ولتاژ (V)</span>
+                                <span class="value-display" id="voltage-value">12.0 V</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="voltage" 
+                                min="0" 
+                                max="100" 
+                                step="0.1" 
+                                value="12"
+                                class="slider"
+                            >
+                            <div class="range-labels">
+                                <span>0 V</span>
+                                <span>100 V</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="resistance">
+                                <span class="label-text">مقاومت (R)</span>
+                                <span class="value-display" id="resistance-value">4.0 Ω</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="resistance" 
+                                min="0.1" 
+                                max="100" 
+                                step="0.1" 
+                                value="4"
+                                class="slider"
+                            >
+                            <div class="range-labels">
+                                <span>0.1 Ω</span>
+                                <span>100 Ω</span>
+                            </div>
+                        </div>
+
+                        <div class="result-section">
+                            <div class="result-box">
+                                <div class="result-label">جریان (I)</div>
+                                <div class="result-value" id="current-value">3.00 A</div>
+                                <div class="formula">I = V / R</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KCL Subsection -->
+                <div class="data-subsection" id="kcl-subsection">
+                    <h2>قانون جریان کیرشهوف (KCL)</h2>
+                    <p class="subsection-description">
+                        قانون جریان کیرشهوف بیان می‌کند که مجموع جریان‌های ورودی به یک گره 
+                        برابر با مجموع جریان‌های خروجی از آن گره است. این قانون بر اساس اصل بقای بار الکتریکی است.
                     </p>
+
+                    <div class="calculator">
+                        <div class="input-group">
+                            <label for="i1">
+                                <span class="label-text">جریان ورودی I₁</span>
+                                <span class="value-display" id="i1-value">5.0 A</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="i1" 
+                                min="0" 
+                                max="20" 
+                                step="0.1" 
+                                value="5"
+                                class="slider"
+                            >
+                            <div class="range-labels">
+                                <span>0 A</span>
+                                <span>20 A</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="i2">
+                                <span class="label-text">جریان ورودی I₂</span>
+                                <span class="value-display" id="i2-value">3.0 A</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="i2" 
+                                min="0" 
+                                max="20" 
+                                step="0.1" 
+                                value="3"
+                                class="slider"
+                            >
+                            <div class="range-labels">
+                                <span>0 A</span>
+                                <span>20 A</span>
+                            </div>
+                        </div>
+
+                        <div class="result-section">
+                            <div class="result-box">
+                                <div class="result-label">جریان خروجی I₃</div>
+                                <div class="result-value" id="i3-value">8.00 A</div>
+                                <div class="formula">I₃ = I₁ + I₂</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="history-item">
-                    <h3>گوستاو رابرت کیرشهوف (1824-1887)</h3>
-                    <p>
-                        گوستاو کیرشهوف فیزیک‌دان آلمانی بود که سهم قابل توجهی در درک مدارهای الکتریکی داشت. 
-                        در سال 1845، در حالی که هنوز دانشجو بود، دو قانون اساسی را فرموله کرد که به نام او نامگذاری شده‌اند:
+                <!-- KVL Subsection -->
+                <div class="data-subsection" id="kvl-subsection">
+                    <h2>قانون ولتاژ کیرشهوف (KVL)</h2>
+                    <p class="subsection-description">
+                        قانون ولتاژ کیرشهوف بیان می‌کند که مجموع تمام افت‌های ولتاژ در هر حلقه بسته 
+                        در یک مدار برابر با صفر است. به عبارت دیگر، ولتاژ منبع برابر با مجموع تمام افت‌های ولتاژ است.
                     </p>
-                    <ul>
-                        <li><strong>قانون جریان کیرشهوف (KCL):</strong> مجموع جریان‌های ورودی به یک گره 
-                        برابر با مجموع جریان‌های خروجی از آن است.</li>
-                        <li><strong>قانون ولتاژ کیرشهوف (KVL):</strong> مجموع افت‌های ولتاژ در هر حلقه بسته برابر با صفر است.</li>
-                    </ul>
-                    <p>
-                        این قوانین به ترتیب بر اساس اصول اساسی بقای بار و بقای انرژی هستند. 
-                        آنها ابزارهای ضروری برای تحلیل مدارهای الکتریکی پیچیده محسوب می‌شوند.
+
+                    <div class="calculator">
+                        <div class="input-group">
+                            <label for="source-voltage">
+                                <span class="label-text">ولتاژ منبع (V)</span>
+                                <span class="value-display" id="source-voltage-value">12.0 V</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="source-voltage" 
+                                min="0" 
+                                max="50" 
+                                step="0.1" 
+                                value="12"
+                                class="slider"
+                            >
+                            <div class="range-labels">
+                                <span>0 V</span>
+                                <span>50 V</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="v1">
+                                <span class="label-text">افت ولتاژ V₁</span>
+                                <span class="value-display" id="v1-value">5.0 V</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="v1" 
+                                min="0" 
+                                max="50" 
+                                step="0.1" 
+                                value="5"
+                                class="slider"
+                            >
+                            <div class="range-labels">
+                                <span>0 V</span>
+                                <span>50 V</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="v2">
+                                <span class="label-text">افت ولتاژ V₂</span>
+                                <span class="value-display" id="v2-value">7.0 V</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="v2" 
+                                min="0" 
+                                max="50" 
+                                step="0.1" 
+                                value="7"
+                                class="slider"
+                            >
+                            <div class="range-labels">
+                                <span>0 V</span>
+                                <span>50 V</span>
+                            </div>
+                        </div>
+
+                        <div class="result-section">
+                            <div class="result-box">
+                                <div class="result-label">مجموع افت‌های ولتاژ</div>
+                                <div class="result-value" id="voltage-sum-value">12.00 V</div>
+                                <div class="formula">V = V₁ + V₂</div>
+                                <div class="validation" id="kvl-validation">✓ معادله متعادل است</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Basic Elements Subsection -->
+                <div class="data-subsection" id="basic-elements-subsection">
+                    <h2>عناصر پایه مدار</h2>
+                    <p class="subsection-description">
+                        اجزای اساسی که بلوک‌های سازنده مدارهای الکتریکی را تشکیل می‌دهند. 
+                        درک این عناصر برای تحلیل و طراحی مدار ضروری است.
                     </p>
+
+                    <div class="elements-tabs">
+                        <div class="tab-buttons">
+                            <button class="element-tab active" data-element="resistor">مقاومت (R)</button>
+                            <button class="element-tab" data-element="capacitor">خازن (C)</button>
+                            <button class="element-tab" data-element="inductor">سلف (L)</button>
+                            <button class="element-tab" data-element="battery">باتری (V)</button>
+                            <button class="element-tab" data-element="current">جریان (I)</button>
+                            <button class="element-tab" data-element="voltage">ولتاژ (V)</button>
+                            <button class="element-tab" data-element="ohm">اهم (Ω)</button>
+                            <button class="element-tab" data-element="structures">ساختارهای مدار</button>
+                        </div>
+
+                        <!-- Resistor Panel -->
+                        <div class="element-panel active" id="resistor-panel">
+                            <h3>مقاومت (R)</h3>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <h4>تاریخچه</h4>
+                                    <p>مقاومت‌ها از روزهای اولیه مهندسی برق استفاده شده‌اند. 
+                                    مفهوم مقاومت توسط گئورگ سیمون اهم در سال 1827 رسمیت یافت. 
+                                    مقاومت‌های اولیه از موادی مانند کربن، سیم پیچ‌های سیم‌پیچ شده، 
+                                    و بعداً فیلم فلزی ساخته می‌شدند. مقاومت‌های مدرن از مواد مختلفی از جمله 
+                                    ترکیب کربن، فیلم فلزی و فناوری‌های فیلم ضخیم استفاده می‌کنند.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>کاربردها</h4>
+                                    <ul>
+                                        <li>محدود کردن جریان در مدارها</li>
+                                        <li>تقسیم ولتاژ</li>
+                                        <li>بایاس ترانزیستورها</li>
+                                        <li>مقاومت‌های pull-up و pull-down</li>
+                                        <li>عناصر گرمایشی</li>
+                                        <li>شرط‌سازی سیگنال</li>
+                                    </ul>
+                                </div>
+                                <div class="info-card">
+                                    <h4>مقدار و واحدها</h4>
+                                    <p><strong>واحد:</strong> Ohm (Ω)</p>
+                                    <p><strong>نماد:</strong> R</p>
+                                    <p><strong>محدوده:</strong> Milliohms (mΩ) تا Gigaohms (GΩ)</p>
+                                    <p>مقدار مقاومت توسط خواص مواد، طول، 
+                                    سطح مقطع و دما تعیین می‌شود.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>روش محاسبه</h4>
+                                    <p class="formula-box">R = ρ × (L / A)</p>
+                                    <p>که در آن:</p>
+                                    <ul>
+                                        <li>ρ (رو) = مقاومت ویژه ماده (Ω·m)</li>
+                                        <li>L = طول هادی (m)</li>
+                                        <li>A = سطح مقطع (m²)</li>
+                                    </ul>
+                                    <p><strong>قانون اهم:</strong> R = V / I</p>
+                                </div>
+                                <div class="info-card full-width">
+                                    <h4>اطلاعات تکمیلی</h4>
+                                    <p>مقاومت‌ها از قانون اهم پیروی می‌کنند: V = I × R. آنها توان را به صورت گرما 
+                                    تلف می‌کنند طبق فرمول P = I²R = V²/R. مقاومت‌ها می‌توانند ثابت یا متغیر باشند 
+                                    (پتانسیومترها، رئوستات‌ها). کدگذاری رنگی برای نشان دادن مقادیر مقاومت استفاده می‌شود. 
+                                    دما بر مقاومت تأثیر می‌گذارد: مقاومت‌های با ضریب دمای مثبت (PTC) با افزایش دما 
+                                    مقاومت افزایش می‌یابد، در حالی که مقاومت‌های با ضریب دمای منفی (NTC) 
+                                    با افزایش دما مقاومت کاهش می‌یابد.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Capacitor Panel -->
+                        <div class="element-panel" id="capacitor-panel">
+                            <h3>خازن (C)</h3>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <h4>تاریخچه</h4>
+                                    <p>اولین خازن، که به آن شیشه لیدن می‌گفتند، در سال 1745 توسط 
+                                    پیتر ون موسشنبروک اختراع شد. خازن‌های مدرن از مواد دی‌الکتریک مختلفی از جمله 
+                                    سرامیک، الکترولیتی، تانتالوم و فیلم استفاده می‌کنند.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>کاربردها</h4>
+                                    <ul>
+                                        <li>ذخیره انرژی</li>
+                                        <li>فیلتر کردن و هموار کردن</li>
+                                        <li>کوپلینگ و دکوپلینگ</li>
+                                        <li>مدارهای تایمینگ</li>
+                                        <li>اصلاح ضریب توان</li>
+                                    </ul>
+                                </div>
+                                <div class="info-card">
+                                    <h4>مقدار و واحدها</h4>
+                                    <p><strong>واحد:</strong> Farad (F)</p>
+                                    <p><strong>نماد:</strong> C</p>
+                                    <p><strong>مقادیر رایج:</strong> Picofarads (pF) تا Farads (F)</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>روش محاسبه</h4>
+                                    <p class="formula-box">C = ε × (A / d)</p>
+                                    <p><strong>بار:</strong> Q = C × V</p>
+                                    <p><strong>انرژی:</strong> E = ½CV²</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Inductor Panel -->
+                        <div class="element-panel" id="inductor-panel">
+                            <h3>سلف (L)</h3>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <h4>تاریخچه</h4>
+                                    <p>سلف‌ها از طریق آزمایش‌های الکترومغناطیسی توسط مایکل فارادی و جوزف هنری 
+                                    در دهه 1830 کشف شدند.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>کاربردها</h4>
+                                    <ul>
+                                        <li>ذخیره انرژی در میدان مغناطیسی</li>
+                                        <li>فیلتر کردن</li>
+                                        <li>ترانسفورماتورها</li>
+                                        <li>نوسان‌سازها</li>
+                                    </ul>
+                                </div>
+                                <div class="info-card">
+                                    <h4>روش محاسبه</h4>
+                                    <p class="formula-box">L = (μ × N² × A) / l</p>
+                                    <p><strong>ولتاژ:</strong> V = L(dI/dt)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Battery Panel -->
+                        <div class="element-panel" id="battery-panel">
+                            <h3>باتری / منبع ولتاژ (V)</h3>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <h4>تاریخچه</h4>
+                                    <p>اولین باتری توسط الساندرو ولتا در سال 1800 اختراع شد که به آن 
+                                    "پیل ولتایی" می‌گفتند.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>کاربردها</h4>
+                                    <ul>
+                                        <li>منابع برق قابل حمل</li>
+                                        <li>سیستم‌های برق پشتیبان</li>
+                                        <li>وسایل نقلیه برقی</li>
+                                    </ul>
+                                </div>
+                                <div class="info-card">
+                                    <h4>روش محاسبه</h4>
+                                    <p class="formula-box">V = E - I × R<sub>internal</sub></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Panel -->
+                        <div class="element-panel" id="current-panel">
+                            <h3>جریان (I)</h3>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <h4>تعریف</h4>
+                                    <p>جریان الکتریکی جریان بار الکتریکی از طریق یک هادی است.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>روش محاسبه</h4>
+                                    <p class="formula-box">I = Q / t</p>
+                                    <p><strong>قانون اهم:</strong> I = V / R</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Voltage Panel -->
+                        <div class="element-panel" id="voltage-panel">
+                            <h3>ولتاژ (V)</h3>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <h4>تعریف</h4>
+                                    <p>ولتاژ کار انجام شده در واحد بار برای حرکت یک بار بین دو نقطه است.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>روش محاسبه</h4>
+                                    <p class="formula-box">V = W / Q</p>
+                                    <p><strong>قانون اهم:</strong> V = I × R</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ohm Panel -->
+                        <div class="element-panel" id="ohm-panel">
+                            <h3>اهم (Ω)</h3>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <h4>تعریف</h4>
+                                    <p>اهم واحد SI مقاومت الکتریکی است که به نام گئورگ سیمون اهم نامگذاری شده است.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>روش محاسبه</h4>
+                                    <p class="formula-box">R = V / I</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Structures Panel -->
+                        <div class="element-panel" id="structures-panel">
+                            <h3>ساختارهای مدار</h3>
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <h4>شاخه (Branch)</h4>
+                                    <p>شاخه یک مسیر واحد در یک مدار است که دو گره را به هم متصل می‌کند.</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>حلقه (Loop)</h4>
+                                    <p>حلقه یک مسیر بسته در یک مدار است. KVL: ΣV = 0</p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>گره (Node)</h4>
+                                    <p>گره نقطه‌ای است که عناصر مدار به آن متصل می‌شوند. KCL: ΣI<sub>in</sub> = ΣI<sub>out</sub></p>
+                                </div>
+                                <div class="info-card">
+                                    <h4>مش (Mesh)</h4>
+                                    <p>مش یک حلقه است که هیچ حلقه دیگری را در خود ندارد.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="history-item">
-                    <h3>اهمیت در مهندسی برق</h3>
-                    <p>
-                        این سه قانون پایه‌های تحلیل مدار را تشکیل می‌دهند و به طور گسترده در موارد زیر استفاده می‌شوند:
+                <!-- Sources Subsection -->
+                <div class="data-subsection" id="sources-subsection">
+                    <h2>منابع وابسته و مستقل</h2>
+                    <p class="subsection-description">
+                        درک انواع مختلف منابع ولتاژ و جریان برای تحلیل مدار ضروری است. 
+                        منابع انرژی را به مدارها ارائه می‌دهند و می‌توانند مستقل یا وابسته به سایر متغیرهای مدار باشند.
                     </p>
-                    <ul>
-                        <li>طراحی مدارها و سیستم‌های الکترونیکی</li>
-                        <li>تحلیل شبکه‌های توزیع برق</li>
-                        <li>درک رفتار نیمه‌هادی‌ها</li>
-                        <li>توسعه استانداردهای ایمنی برق</li>
-                        <li>آموزش مفاهیم اساسی برق</li>
-                    </ul>
-                    <p>
-                        بدون این قوانین، مهندسی برق مدرن امکان‌پذیر نبود. آنها چارچوب ریاضی مورد نیاز 
-                        برای پیش‌بینی و کنترل رفتار الکتریکی در مدارهای با هر پیچیدگی را فراهم می‌کنند.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Basic Elements Section -->
-        <section id="basic-elements" class="content-section">
-            <h2>عناصر پایه مدار</h2>
-            <p class="section-description">
-                اجزای اساسی که بلوک‌های سازنده مدارهای الکتریکی را تشکیل می‌دهند. 
-                درک این عناصر برای تحلیل و طراحی مدار ضروری است.
-            </p>
-
-            <div class="elements-tabs">
-                <div class="tab-buttons">
-                    <button class="element-tab active" data-element="resistor">مقاومت (R)</button>
-                    <button class="element-tab" data-element="capacitor">خازن (C)</button>
-                    <button class="element-tab" data-element="inductor">سلف (L)</button>
-                    <button class="element-tab" data-element="battery">باتری (V)</button>
-                    <button class="element-tab" data-element="current">جریان (I)</button>
-                    <button class="element-tab" data-element="voltage">ولتاژ (V)</button>
-                    <button class="element-tab" data-element="ohm">اهم (Ω)</button>
-                    <button class="element-tab" data-element="structures">ساختارهای مدار</button>
-                </div>
-
-                <!-- Resistor Panel -->
-                <div class="element-panel active" id="resistor-panel">
-                    <h3>مقاومت (R)</h3>
                     <div class="info-grid">
                         <div class="info-card">
-                            <h4>تاریخچه</h4>
-                            <p>مقاومت‌ها از روزهای اولیه مهندسی برق استفاده شده‌اند. 
-                            مفهوم مقاومت توسط گئورگ سیمون اهم در سال 1827 رسمیت یافت. 
-                            مقاومت‌های اولیه از موادی مانند کربن، سیم پیچ‌های سیم‌پیچ شده، 
-                            و بعداً فیلم فلزی ساخته می‌شدند. مقاومت‌های مدرن از مواد مختلفی از جمله 
-                            ترکیب کربن، فیلم فلزی و فناوری‌های فیلم ضخیم استفاده می‌کنند.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>کاربردها</h4>
-                            <ul>
-                                <li>محدود کردن جریان در مدارها</li>
-                                <li>تقسیم ولتاژ</li>
-                                <li>بایاس ترانزیستورها</li>
-                                <li>مقاومت‌های pull-up و pull-down</li>
-                                <li>عناصر گرمایشی</li>
-                                <li>شرط‌سازی سیگنال</li>
-                            </ul>
-                        </div>
-                        <div class="info-card">
-                            <h4>مقدار و واحدها</h4>
-                            <p><strong>واحد:</strong> اهم (Ω)</p>
-                            <p><strong>نماد:</strong> R</p>
-                            <p><strong>محدوده:</strong> میلی‌اهم (mΩ) تا گیگااهم (GΩ)</p>
-                            <p>مقدار مقاومت توسط خواص مواد، طول، 
-                            سطح مقطع و دما تعیین می‌شود.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>روش محاسبه</h4>
-                            <p class="formula-box">R = ρ × (L / A)</p>
-                            <p>که در آن:</p>
-                            <ul>
-                                <li>ρ (رو) = مقاومت ویژه ماده (Ω·m)</li>
-                                <li>L = طول هادی (m)</li>
-                                <li>A = سطح مقطع (m²)</li>
-                            </ul>
-                            <p><strong>قانون اهم:</strong> R = V / I</p>
-                        </div>
-                        <div class="info-card full-width">
-                            <h4>اطلاعات تکمیلی</h4>
-                            <p>مقاومت‌ها از قانون اهم پیروی می‌کنند: V = I × R. آنها توان را به صورت گرما 
-                            تلف می‌کنند طبق فرمول P = I²R = V²/R. مقاومت‌ها می‌توانند ثابت یا متغیر باشند 
-                            (پتانسیومترها، رئوستات‌ها). کدگذاری رنگی برای نشان دادن مقادیر مقاومت استفاده می‌شود. 
-                            دما بر مقاومت تأثیر می‌گذارد: مقاومت‌های با ضریب دمای مثبت (PTC) با افزایش دما 
-                            مقاومت افزایش می‌یابد، در حالی که مقاومت‌های با ضریب دمای منفی (NTC) 
-                            با افزایش دما مقاومت کاهش می‌یابد.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Capacitor Panel -->
-                <div class="element-panel" id="capacitor-panel">
-                    <h3>خازن (C)</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>تاریخچه</h4>
-                            <p>اولین خازن، که به آن شیشه لیدن می‌گفتند، در سال 1745 توسط 
-                            پیتر ون موسشنبروک اختراع شد. این شامل یک شیشه شیشه‌ای بود که داخل و خارج آن 
-                            با فلز پوشیده شده بود. خازن‌های مدرن از مواد دی‌الکتریک مختلفی از جمله 
-                            سرامیک، الکترولیتی، تانتالوم و فیلم استفاده می‌کنند. 
-                            توسعه خازن‌ها برای الکترونیک و سیستم‌های برق بسیار مهم بوده است.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>کاربردها</h4>
-                            <ul>
-                                <li>ذخیره انرژی</li>
-                                <li>فیلتر کردن و هموار کردن</li>
-                                <li>کوپلینگ و دکوپلینگ</li>
-                                <li>مدارهای تایمینگ</li>
-                                <li>اصلاح ضریب توان</li>
-                                <li>پردازش سیگنال</li>
-                            </ul>
-                        </div>
-                        <div class="info-card">
-                            <h4>مقدار و واحدها</h4>
-                            <p><strong>واحد:</strong> فاراد (F)</p>
-                            <p><strong>نماد:</strong> C</p>
-                            <p><strong>مقادیر رایج:</strong> پیکوفاراد (pF) تا فاراد (F)</p>
-                            <p>ظرفیت خازن به مساحت صفحات، فاصله بین صفحات، 
-                            و ثابت دی‌الکتریک بستگی دارد.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>روش محاسبه</h4>
-                            <p class="formula-box">C = ε × (A / d)</p>
-                            <p>که در آن:</p>
-                            <ul>
-                                <li>ε = گذردهی دی‌الکتریک (F/m)</li>
-                                <li>A = مساحت صفحات (m²)</li>
-                                <li>d = فاصله بین صفحات (m)</li>
-                            </ul>
-                            <p><strong>بار:</strong> Q = C × V</p>
-                            <p><strong>انرژی:</strong> E = ½CV²</p>
-                        </div>
-                        <div class="info-card full-width">
-                            <h4>اطلاعات تکمیلی</h4>
-                            <p>خازن‌ها انرژی الکتریکی را در یک میدان الکتریکی ذخیره می‌کنند. آنها جریان DC را 
-                            مسدود می‌کنند اما اجازه عبور جریان AC را می‌دهند. رابطه جریان-ولتاژ 
-                            I = C(dV/dt) است. در سری: 1/C<sub>total</sub> = 1/C₁ + 1/C₂ + ... 
-                            در موازی: C<sub>total</sub> = C₁ + C₂ + ... خازن‌ها در مدارهای AC 
-                            امپدانس Z = 1/(jωC) دارند، که در آن ω فرکانس زاویه‌ای است.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Inductor Panel -->
-                <div class="element-panel" id="inductor-panel">
-                    <h3>سلف (L)</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>تاریخچه</h4>
-                            <p>سلف‌ها از طریق آزمایش‌های الکترومغناطیسی توسط مایکل فارادی و جوزف هنری 
-                            در دهه 1830 کشف شدند. اولین سلف‌های عملی سیم پیچ‌هایی بودند که در سیستم‌های تلگراف 
-                            استفاده می‌شدند. سلف‌های مدرن از مواد هسته مختلفی از جمله هوا، آهن، فریت و پودر آهن 
-                            برای دستیابی به مقادیر و ویژگی‌های مختلف القایی استفاده می‌کنند.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>کاربردها</h4>
-                            <ul>
-                                <li>ذخیره انرژی در میدان مغناطیسی</li>
-                                <li>فیلتر کردن (کم‌گذر، زیادگذر)</li>
-                                <li>ترانسفورماتورها</li>
-                                <li>نوسان‌سازها و تشدیدگرها</li>
-                                <li>منابع تغذیه (چوک‌ها)</li>
-                                <li>مدارهای RF</li>
-                            </ul>
-                        </div>
-                        <div class="info-card">
-                            <h4>مقدار و واحدها</h4>
-                            <p><strong>واحد:</strong> هنری (H)</p>
-                            <p><strong>نماد:</strong> L</p>
-                            <p><strong>مقادیر رایج:</strong> نانوهنری (nH) تا هنری (H)</p>
-                            <p>القا به تعداد دورها، ماده هسته، 
-                            و هندسه سیم پیچ بستگی دارد.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>روش محاسبه</h4>
-                            <p class="formula-box">L = (μ × N² × A) / l</p>
-                            <p>که در آن:</p>
-                            <ul>
-                                <li>μ = نفوذپذیری هسته (H/m)</li>
-                                <li>N = تعداد دورها</li>
-                                <li>A = سطح مقطع (m²)</li>
-                                <li>l = طول سیم پیچ (m)</li>
-                            </ul>
-                            <p><strong>ولتاژ:</strong> V = L(dI/dt)</p>
-                            <p><strong>انرژی:</strong> E = ½LI²</p>
-                        </div>
-                        <div class="info-card full-width">
-                            <h4>اطلاعات تکمیلی</h4>
-                            <p>سلف‌ها انرژی را در یک میدان مغناطیسی ذخیره می‌کنند. آنها در برابر تغییرات جریان مقاومت می‌کنند. 
-                            در مدارهای DC، سلف‌ها پس از حالت پایدار مانند اتصال کوتاه عمل می‌کنند. 
-                            رابطه ولتاژ-جریان V = L(dI/dt) است. در سری: 
-                            L<sub>total</sub> = L₁ + L₂ + ... در موازی: 
-                            1/L<sub>total</sub> = 1/L₁ + 1/L₂ + ... سلف‌ها در مدارهای AC 
-                            امپدانس Z = jωL دارند، که در آن ω فرکانس زاویه‌ای است.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Battery Panel -->
-                <div class="element-panel" id="battery-panel">
-                    <h3>باتری / منبع ولتاژ (V)</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>تاریخچه</h4>
-                            <p>اولین باتری توسط الساندرو ولتا در سال 1800 اختراع شد که به آن 
-                            "پیل ولتایی" می‌گفتند. این شامل دیسک‌های روی و مس متناوب بود که با 
-                            مقوا آغشته به آب نمک از هم جدا شده بودند. باتری‌های مدرن از شیمی‌های مختلفی استفاده می‌کنند: 
-                            سرب-اسید، نیکل-کادمیوم، لیتیوم-یون و غیره. 
-                            باتری‌ها انرژی شیمیایی را به انرژی الکتریکی تبدیل می‌کنند.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>کاربردها</h4>
-                            <ul>
-                                <li>منابع برق قابل حمل</li>
-                                <li>سیستم‌های برق پشتیبان</li>
-                                <li>وسایل نقلیه برقی</li>
-                                <li>ذخیره انرژی تجدیدپذیر</li>
-                                <li>الکترونیک مصرفی</li>
-                                <li>سیستم‌های اضطراری</li>
-                            </ul>
-                        </div>
-                        <div class="info-card">
-                            <h4>مقدار و واحدها</h4>
-                            <p><strong>واحد:</strong> ولت (V)</p>
-                            <p><strong>نماد:</strong> V یا E</p>
-                            <p><strong>مقادیر رایج:</strong> 1.5V تا صدها ولت</p>
-                            <p>ولتاژ تفاوت پتانسیل الکتریکی بین دو نقطه است. 
-                            باتری‌ها ولتاژ ثابت (ایده‌آل) یا ولتاژ با مقاومت داخلی ارائه می‌دهند.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>روش محاسبه</h4>
-                            <p class="formula-box">V = E - I × R<sub>internal</sub></p>
-                            <p>که در آن:</p>
-                            <ul>
-                                <li>E = نیروی محرکه الکتریکی (EMF)</li>
-                                <li>I = جریان</li>
-                                <li>R<sub>internal</sub> = مقاومت داخلی</li>
-                            </ul>
-                            <p><strong>توان:</strong> P = V × I</p>
-                            <p><strong>انرژی:</strong> E = V × I × t</p>
-                        </div>
-                        <div class="info-card full-width">
-                            <h4>اطلاعات تکمیلی</h4>
-                            <p>باتری‌ها منابع ولتاژی هستند که ولتاژ نسبتاً ثابتی را حفظ می‌کنند. 
-                            منابع ولتاژ ایده‌آل مقاومت داخلی صفر دارند. باتری‌های واقعی 
-                            مقاومت داخلی دارند که باعث افت ولتاژ تحت بار می‌شود. 
-                            ظرفیت باتری بر حسب آمپر-ساعت (Ah) اندازه‌گیری می‌شود. اتصال سری ولتاژ را افزایش می‌دهد، 
-                            اتصال موازی ظرفیت را افزایش می‌دهد. ولتاژ باتری با تخلیه کاهش می‌یابد.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Current Panel -->
-                <div class="element-panel" id="current-panel">
-                    <h3>جریان (I)</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>تعریف</h4>
-                            <p>جریان الکتریکی جریان بار الکتریکی از طریق یک هادی است. 
-                            به عنوان نرخ جریان بار در واحد زمان تعریف می‌شود. جریان 
-                            از ترمینال مثبت به منفی جریان می‌یابد (جریان متعارف)، اگرچه الکترون‌ها 
-                            در واقع در جهت مخالف جریان می‌یابند.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>روش محاسبه</h4>
-                            <p class="formula-box">I = Q / t</p>
-                            <p>که در آن:</p>
-                            <ul>
-                                <li>Q = بار (کولن)</li>
-                                <li>t = زمان (ثانیه)</li>
-                            </ul>
-                            <p><strong>قانون اهم:</strong> I = V / R</p>
-                            <p><strong>توان:</strong> P = I²R = V × I</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>رابطه با سایر عناصر</h4>
-                            <ul>
-                                <li><strong>مقاومت:</strong> I = V / R</li>
-                                <li><strong>خازن:</strong> I = C(dV/dt)</li>
-                                <li><strong>سلف:</strong> V = L(dI/dt)</li>
-                                <li><strong>KCL:</strong> ΣI<sub>in</sub> = ΣI<sub>out</sub></li>
-                            </ul>
-                        </div>
-                        <div class="info-card full-width">
-                            <h4>اطلاعات تکمیلی</h4>
-                            <p><strong>واحد:</strong> آمپر (A)، به نام آندره-ماری آمپر نامگذاری شده است. 
-                            جریان می‌تواند DC (جریان مستقیم، ثابت) یا AC (جریان متناوب، سینوسی) باشد. 
-                            چگالی جریان J = I/A (A/m²) است. جریان باعث ایجاد میدان‌های مغناطیسی در اطراف هادی‌ها می‌شود. 
-                            ایمنی: جریان‌های بالای 100mA می‌توانند کشنده باشند. 
-                            اندازه‌گیری جریان از آمپرمترهای متصل به صورت سری استفاده می‌کند.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Voltage Panel -->
-                <div class="element-panel" id="voltage-panel">
-                    <h3>ولتاژ (V)</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>تعریف</h4>
-                            <p>ولتاژ، که به آن تفاوت پتانسیل الکتریکی نیز می‌گویند، کار انجام شده 
-                            در واحد بار برای حرکت یک بار بین دو نقطه است. این نشان‌دهنده 
-                            "فشار" است که جریان را از طریق یک مدار هدایت می‌کند. ولتاژ 
-                            بین دو نقطه اندازه‌گیری می‌شود و همیشه نسبی است.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>روش محاسبه</h4>
-                            <p class="formula-box">V = W / Q</p>
-                            <p>که در آن:</p>
-                            <ul>
-                                <li>W = کار/انرژی (ژول)</li>
-                                <li>Q = بار (کولن)</li>
-                            </ul>
-                            <p><strong>قانون اهم:</strong> V = I × R</p>
-                            <p><strong>KVL:</strong> ΣV = 0 (در اطراف یک حلقه)</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>رابطه با سایر عناصر</h4>
-                            <ul>
-                                <li><strong>مقاومت:</strong> V = I × R</li>
-                                <li><strong>خازن:</strong> V = Q / C</li>
-                                <li><strong>سلف:</strong> V = L(dI/dt)</li>
-                                <li><strong>توان:</strong> P = V × I</li>
-                            </ul>
-                        </div>
-                        <div class="info-card full-width">
-                            <h4>اطلاعات تکمیلی</h4>
-                            <p><strong>واحد:</strong> ولت (V)، به نام الساندرو ولتا نامگذاری شده است. 
-                            ولتاژ می‌تواند DC (ثابت) یا AC (متناوب) باشد. ولتاژ پیک، ولتاژ RMS 
-                            و ولتاژ متوسط در مدارهای AC مهم هستند. اندازه‌گیری ولتاژ از ولت‌مترهای 
-                            متصل به صورت موازی استفاده می‌کند. زمین (0V) یک نقطه مرجع است. 
-                            تقسیم‌کننده‌های ولتاژ از مقاومت‌ها برای ایجاد ولتاژهای خاص استفاده می‌کنند. 
-                            ایمنی: ولتاژهای بالای 50V می‌توانند خطرناک باشند.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ohm Panel -->
-                <div class="element-panel" id="ohm-panel">
-                    <h3>اهم (Ω)</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>تعریف</h4>
-                            <p>اهم واحد SI مقاومت الکتریکی است که به نام گئورگ سیمون اهم نامگذاری شده است. 
-                            یک اهم به عنوان مقاومت بین دو نقطه از یک هادی تعریف می‌شود 
-                            زمانی که یک تفاوت پتانسیل ثابت یک ولت جریانی معادل یک 
-                            آمپر تولید می‌کند. این نشان‌دهنده مخالفت با جریان است.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>روش محاسبه</h4>
-                            <p class="formula-box">Ω = V / A</p>
-                            <p>از قانون اهم:</p>
-                            <p class="formula-box">R = V / I</p>
-                            <p>که در آن:</p>
-                            <ul>
-                                <li>R = مقاومت بر حسب اهم</li>
-                                <li>V = ولتاژ بر حسب ولت</li>
-                                <li>I = جریان بر حسب آمپر</li>
-                            </ul>
-                        </div>
-                        <div class="info-card">
-                            <h4>کاربردها</h4>
-                            <ul>
-                                <li>تحلیل و طراحی مدار</li>
-                                <li>محدود کردن جریان</li>
-                                <li>تقسیم ولتاژ</li>
-                                <li>محاسبات تلفات توان</li>
-                                <li>تطبیق امپدانس</li>
-                                <li>شرط‌سازی سیگنال</li>
-                            </ul>
-                        </div>
-                        <div class="info-card full-width">
-                            <h4>اطلاعات تکمیلی</h4>
-                            <p>مقادیر مقاومت از میلی‌اهم (mΩ) تا گیگااهم (GΩ) متغیر است. 
-                            رسانایی (G) معکوس مقاومت است: G = 1/R، که بر حسب زیمنس (S) اندازه‌گیری می‌شود. 
-                            مقاومت به ماده (مقاومت ویژه)، طول، 
-                            سطح مقطع و دما بستگی دارد. ضریب دما نحوه تغییر مقاومت با دما را توصیف می‌کند. 
-                            مقاومت‌ها برای شناسایی آسان با کد رنگی مشخص می‌شوند.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Circuit Structures Panel -->
-                <div class="element-panel" id="structures-panel">
-                    <h3>ساختارهای مدار</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>شاخه (Branch)</h4>
-                            <p><strong>تعریف:</strong> شاخه یک مسیر واحد در یک مدار است که 
-                            دو گره را به هم متصل می‌کند. می‌تواند شامل یک یا چند عنصر مدار 
-                            (مقاومت‌ها، منابع ولتاژ و غیره) متصل به صورت سری باشد.</p>
-                            <p><strong>محاسبه ولتاژ:</strong> مجموع افت‌های ولتاژ در عناصر 
-                            شاخه را جمع کنید.</p>
-                            <p><strong>محاسبه جریان:</strong> جریان در تمام عناصر یک شاخه یکسان است (اتصال سری).</p>
-                            <p><strong>مثال:</strong> یک شاخه با R₁ و R₂ به صورت سری: 
-                            V<sub>branch</sub> = V<sub>R1</sub> + V<sub>R2</sub>، 
-                            I<sub>branch</sub> = I<sub>R1</sub> = I<sub>R2</sub></p>
-                        </div>
-                        <div class="info-card">
-                            <h4>حلقه (Loop)</h4>
-                            <p><strong>تعریف:</strong> حلقه یک مسیر بسته در یک مدار است که 
-                            از همان گره شروع و پایان می‌یابد، از شاخه‌های مختلف عبور می‌کند بدون 
-                            تکرار هیچ شاخه‌ای.</p>
-                            <p><strong>کاربرد KVL:</strong> قانون ولتاژ کیرشهوف بیان می‌کند که 
-                            مجموع جبری تمام ولتاژها در اطراف هر حلقه بسته برابر با صفر است:</p>
-                            <p class="formula-box">ΣV = 0</p>
-                            <p><strong>قرارداد علامت:</strong> افزایش ولتاژ (منابع) مثبت است، 
-                            افت ولتاژ (در عناصر) منفی است، یا برعکس، اما باید ثابت باشد.</p>
-                            <p><strong>مثال:</strong> در یک حلقه با باتری V و مقاومت‌های R₁، R₂: 
-                            V - I×R₁ - I×R₂ = 0</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>گره (Node)</h4>
-                            <p><strong>تعریف:</strong> گره نقطه‌ای در یک مدار است که دو 
-                            یا چند عنصر مدار به آن متصل می‌شوند. این نشان‌دهنده یک نقطه پتانسیل الکتریکی واحد است.</p>
-                            <p><strong>کاربرد KCL:</strong> قانون جریان کیرشهوف بیان می‌کند که 
-                            مجموع جریان‌های ورودی به یک گره برابر با مجموع جریان‌های خروجی است:</p>
-                            <p class="formula-box">ΣI<sub>in</sub> = ΣI<sub>out</sub></p>
-                            <p><strong>قرارداد علامت:</strong> جریان‌های ورودی مثبت هستند، 
-                            خروجی منفی هستند (یا برعکس، اما باید ثابت باشد).</p>
-                            <p><strong>مثال:</strong> در یک گره با I₁ و I₂ ورودی، I₃ خروجی: 
-                            I₁ + I₂ = I₃</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>مش (Mesh)</h4>
-                            <p><strong>تعریف:</strong> مش یک حلقه است که هیچ حلقه دیگری را در خود ندارد. 
-                            این ساده‌ترین حلقه ممکن در یک مدار مسطح است.</p>
-                            <p><strong>محاسبه جریان:</strong> تحلیل مش یک جریان مش را به هر مش اختصاص می‌دهد. 
-                            جریان شاخه واقعی مجموع جبری جریان‌های مش از طریق آن شاخه است.</p>
-                            <p><strong>محاسبه ولتاژ:</strong> KVL را به هر مش اعمال کنید، با استفاده از جریان‌های مش 
-                            برای بیان افت‌های ولتاژ.</p>
-                            <p><strong>مثال:</strong> برای دو مش با جریان‌های I₁ و I₂، 
-                            و شاخه مشترک با R: I<sub>branch</sub> = I₁ - I₂</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sources Section -->
-        <section id="sources" class="content-section">
-            <h2>منابع وابسته و مستقل</h2>
-            <p class="section-description">
-                درک انواع مختلف منابع ولتاژ و جریان برای تحلیل مدار ضروری است. 
-                منابع انرژی را به مدارها ارائه می‌دهند و می‌توانند مستقل یا وابسته به سایر متغیرهای مدار باشند.
-            </p>
-
-            <div class="sources-container">
-                <div class="source-type">
-                    <h3>منابع مستقل</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>تعریف</h4>
+                            <h4>منابع مستقل</h4>
                             <p>منابع مستقل منابع ولتاژ یا جریانی هستند که مقدار آنها 
                             مستقل از هر متغیر مدار دیگری است. آنها یک مقدار ثابت (DC) 
-                            یا یک شکل موج مشخص (AC) را بدون توجه به مداری که به آن متصل هستند حفظ می‌کنند.</p>
+                            یا یک شکل موج مشخص (AC) را حفظ می‌کنند.</p>
+                            <p><strong>مثال‌ها:</strong> باتری‌ها، منابع تغذیه، تولیدکنندگان سیگنال</p>
                         </div>
                         <div class="info-card">
-                            <h4>ویژگی‌ها</h4>
-                            <ul>
-                                <li><strong>منبع ولتاژ مستقل:</strong> ولتاژ مشخص را بدون توجه به جریان حفظ می‌کند</li>
-                                <li><strong>منبع جریان مستقل:</strong> جریان مشخص را بدون توجه به ولتاژ حفظ می‌کند</li>
-                                <li>منابع ایده‌آل مقاومت داخلی صفر (ولتاژ) یا 
-                                مقاومت داخلی بی‌نهایت (جریان) دارند</li>
-                                <li>منابع واقعی مقاومت/امپدانس داخلی دارند</li>
-                            </ul>
-                        </div>
-                        <div class="info-card">
-                            <h4>نحوه عملکرد</h4>
-                            <p><strong>منبع ولتاژ:</strong> ولتاژ ثابت V را ارائه می‌دهد. 
-                            جریان به بار بستگی دارد: I = V / R<sub>load</sub>. می‌تواند 
-                            جریان بی‌نهایت (ایده‌آل) یا جریان محدود (واقعی) ارائه دهد.</p>
-                            <p><strong>منبع جریان:</strong> جریان ثابت I را ارائه می‌دهد. 
-                            ولتاژ به بار بستگی دارد: V = I × R<sub>load</sub>. می‌تواند 
-                            ولتاژ بی‌نهایت (ایده‌آل) یا ولتاژ محدود (واقعی) ارائه دهد.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>مثال‌ها</h4>
-                            <ul>
-                                <li>باتری‌ها (منبع ولتاژ DC)</li>
-                                <li>منابع تغذیه (منبع ولتاژ DC یا AC)</li>
-                                <li>تولیدکنندگان سیگنال (منبع ولتاژ AC)</li>
-                                <li>سلول‌های فتوولتائیک (منبع جریان)</li>
-                                <li>منابع جریان ترانزیستوری</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="source-type">
-                    <h3>منابع وابسته</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>تعریف</h4>
+                            <h4>منابع وابسته</h4>
                             <p>منابع وابسته (کنترل شده) منابع ولتاژ یا جریانی هستند که مقدار آنها 
-                            به ولتاژ یا جریان دیگری در مدار بستگی دارد. آنها برای مدل‌سازی 
-                            دستگاه‌های فعال مانند ترانزیستورها و تقویت‌کننده‌های عملیاتی استفاده می‌شوند.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>نحوه شناسایی</h4>
-                            <p>منابع وابسته با موارد زیر شناسایی می‌شوند:</p>
-                            <ul>
-                                <li>نماد الماس‌شکل (در مقابل دایره برای مستقل)</li>
-                                <li>برچسب نشان‌دهنده متغیر کنترل (مثلاً V<sub>x</sub>، I<sub>x</sub>)</li>
-                                <li>ضریب بهره (μ، β، g<sub>m</sub>، r)</li>
-                            </ul>
-                            <p><strong>انواع:</strong></p>
-                            <ul>
-                                <li>منبع ولتاژ کنترل شده با ولتاژ (VCVS)</li>
-                                <li>منبع ولتاژ کنترل شده با جریان (CCVS)</li>
-                                <li>منبع جریان کنترل شده با ولتاژ (VCCS)</li>
-                                <li>منبع جریان کنترل شده با جریان (CCCS)</li>
-                            </ul>
-                        </div>
-                        <div class="info-card">
-                            <h4>رابطه با سایر عناصر</h4>
-                            <p><strong>VCVS:</strong> V<sub>out</sub> = μ × V<sub>in</sub></p>
-                            <p>مثال: تقویت‌کننده عملیاتی (op-amp) در ناحیه خطی</p>
-                            <p><strong>CCVS:</strong> V<sub>out</sub> = r × I<sub>in</sub></p>
-                            <p>مثال: تقویت‌کننده ترانس‌مقاومت</p>
-                            <p><strong>VCCS:</strong> I<sub>out</sub> = g<sub>m</sub> × V<sub>in</sub></p>
-                            <p>مثال: ترانزیستور اثر میدانی (FET)</p>
-                            <p><strong>CCCS:</strong> I<sub>out</sub> = β × I<sub>in</sub></p>
-                            <p>مثال: ترانزیستور پیوندی دوقطبی (BJT)</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>کاربردها</h4>
-                            <ul>
-                                <li>مدل‌سازی ترانزیستور (BJT، FET)</li>
-                                <li>مدارهای تقویت‌کننده عملیاتی</li>
-                                <li>طراحی تقویت‌کننده</li>
-                                <li>سیستم‌های فیدبک</li>
-                                <li>فیلترهای فعال</li>
-                                <li>نوسان‌سازها</li>
-                            </ul>
+                            به ولتاژ یا جریان دیگری در مدار بستگی دارد.</p>
+                            <p><strong>انواع:</strong> VCVS, CCVS, VCCS, CCCS</p>
+                            <p><strong>کاربردها:</strong> مدل‌سازی ترانزیستور، مدارهای op-amp، تقویت‌کننده‌ها</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Series and Parallel Section -->
-        <section id="series-parallel" class="content-section">
-            <h2>مقاومت‌های سری و موازی</h2>
-            <p class="section-description">
-                درک نحوه ترکیب مقاومت‌ها به صورت سری و موازی برای تحلیل مدار اساسی است. 
-                این پیکربندی‌ها ویژگی‌ها و روش‌های محاسبه متفاوتی دارند.
-            </p>
-
-            <div class="resistance-container">
-                <div class="resistance-type">
-                    <h3>مقاومت‌های سری</h3>
+                <!-- Series/Parallel Subsection -->
+                <div class="data-subsection" id="series-parallel-subsection">
+                    <h2>مقاومت‌های سری و موازی</h2>
+                    <p class="subsection-description">
+                        درک نحوه ترکیب مقاومت‌ها به صورت سری و موازی برای تحلیل مدار اساسی است. 
+                        این پیکربندی‌ها ویژگی‌ها و روش‌های محاسبه متفاوتی دارند.
+                    </p>
                     <div class="info-grid">
                         <div class="info-card">
-                            <h4>روش اتصال</h4>
-                            <p>مقاومت‌ها به صورت انتها به انتها متصل می‌شوند و یک مسیر واحد برای جریان تشکیل می‌دهند. 
-                            همان جریان از تمام مقاومت‌های سری عبور می‌کند. فقط یک مسیر برای جریان وجود دارد.</p>
-                            <p><strong>نمایش:</strong> R₁ — R₂ — R₃ — ... (متصل به صورت زنجیره)</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>فرمول مقاومت کل</h4>
-                            <p class="formula-box">R<sub>total</sub> = R₁ + R₂ + R₃ + ... + R<sub>n</sub></p>
-                            <p>برای n مقاومت به صورت سری، به سادگی تمام مقادیر مقاومت را جمع کنید.</p>
-                            <p><strong>ویژگی کلیدی:</strong> مقاومت کل همیشه بیشتر از بزرگترین مقاومت منفرد است.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>جریان و ولتاژ</h4>
+                            <h4>مقاومت‌های سری</h4>
+                            <p><strong>اتصال:</strong> انتها به انتها، یک مسیر واحد برای جریان</p>
+                            <p class="formula-box">R<sub>total</sub> = R₁ + R₂ + R₃ + ...</p>
                             <p><strong>جریان:</strong> در تمام مقاومت‌ها یکسان است</p>
-                            <p class="formula-box">I = I₁ = I₂ = I₃ = ...</p>
-                            <p><strong>ولتاژ:</strong> ولتاژ در مقاومت‌ها تقسیم می‌شود</p>
-                            <p class="formula-box">V<sub>total</sub> = V₁ + V₂ + V₃ + ...</p>
-                            <p><strong>تقسیم ولتاژ:</strong></p>
-                            <p class="formula-box">V<sub>i</sub> = V<sub>total</sub> × (R<sub>i</sub> / R<sub>total</sub>)</p>
+                            <p><strong>ولتاژ:</strong> در مقاومت‌ها تقسیم می‌شود</p>
                         </div>
                         <div class="info-card">
-                            <h4>مثال ساده</h4>
-                            <p><strong>داده شده:</strong> سه مقاومت R₁ = 10Ω، R₂ = 20Ω، R₃ = 30Ω به صورت سری</p>
-                            <p><strong>محاسبه مقاومت کل:</strong></p>
-                            <p class="formula-box">R<sub>total</sub> = 10 + 20 + 30 = 60Ω</p>
-                            <p><strong>اگر V = 12V اعمال شود:</strong></p>
-                            <p>I = V / R<sub>total</sub> = 12 / 60 = 0.2A</p>
-                            <p>V₁ = 0.2 × 10 = 2V</p>
-                            <p>V₂ = 0.2 × 20 = 4V</p>
-                            <p>V₃ = 0.2 × 30 = 6V</p>
-                            <p>بررسی: 2 + 4 + 6 = 12V ✓</p>
+                            <h4>مقاومت‌های موازی</h4>
+                            <p><strong>اتصال:</strong> در همان دو نقطه، مسیرهای متعدد</p>
+                            <p class="formula-box">1/R<sub>total</sub> = 1/R₁ + 1/R₂ + 1/R₃ + ...</p>
+                            <p><strong>ولتاژ:</strong> در تمام مقاومت‌ها یکسان است</p>
+                            <p><strong>جریان:</strong> در شاخه‌ها تقسیم می‌شود</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="resistance-type">
-                    <h3>مقاومت‌های موازی</h3>
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h4>روش اتصال</h4>
-                            <p>مقاومت‌ها در همان دو نقطه (گره‌ها) متصل می‌شوند و مسیرهای متعددی برای جریان فراهم می‌کنند. 
-                            تمام مقاومت‌ها همان ولتاژ را دارند. جریان در شاخه‌های موازی تقسیم می‌شود.</p>
-                            <p><strong>نمایش:</strong> تمام مقاومت‌ها بین همان دو گره متصل می‌شوند، 
-                            شاخه‌های موازی را تشکیل می‌دهند.</p>
+                <!-- History Subsection -->
+                <div class="data-subsection" id="history-subsection">
+                    <h2>تاریخچه قوانین مدار</h2>
+                    <div class="history-content">
+                        <div class="history-item">
+                            <h3>گئورگ سیمون اهم (1789-1854)</h3>
+                            <p>
+                                گئورگ سیمون اهم فیزیک‌دان و ریاضی‌دان آلمانی بود که رابطه اساسی بین 
+                                ولتاژ، جریان و مقاومت را کشف کرد. در سال 1827، او اثر معروف خود با عنوان 
+                                "Die galvanische Kette, mathematisch bearbeitet" (مدار گالوانیکی بررسی شده از نظر ریاضی) را 
+                                منتشر کرد که قانون اهم را معرفی می‌کرد.
+                            </p>
+                            <p>
+                                کار اهم در ابتدا با تردید مواجه شد، اما در نهایت به یکی از اساسی‌ترین قوانین 
+                                در مهندسی برق تبدیل شد. واحد مقاومت الکتریکی، اهم (Ω)، به افتخار او نامگذاری شده است.
+                            </p>
                         </div>
-                        <div class="info-card">
-                            <h4>فرمول مقاومت کل</h4>
-                            <p class="formula-box">1/R<sub>total</sub> = 1/R₁ + 1/R₂ + 1/R₃ + ... + 1/R<sub>n</sub></p>
-                            <p>یا معادل:</p>
-                            <p class="formula-box">R<sub>total</sub> = 1 / (1/R₁ + 1/R₂ + 1/R₃ + ...)</p>
-                            <p><strong>برای دو مقاومت:</strong></p>
-                            <p class="formula-box">R<sub>total</sub> = (R₁ × R₂) / (R₁ + R₂)</p>
-                            <p><strong>ویژگی کلیدی:</strong> مقاومت کل همیشه کمتر از کوچکترین مقاومت منفرد است.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>جریان و ولتاژ</h4>
-                            <p><strong>ولتاژ:</strong> در تمام مقاومت‌ها یکسان است</p>
-                            <p class="formula-box">V = V₁ = V₂ = V₃ = ...</p>
-                            <p><strong>جریان:</strong> جریان در شاخه‌ها تقسیم می‌شود</p>
-                            <p class="formula-box">I<sub>total</sub> = I₁ + I₂ + I₃ + ...</p>
-                            <p><strong>تقسیم جریان:</strong></p>
-                            <p class="formula-box">I<sub>i</sub> = I<sub>total</sub> × (R<sub>total</sub> / R<sub>i</sub>)</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>مثال ساده</h4>
-                            <p><strong>داده شده:</strong> سه مقاومت R₁ = 10Ω، R₂ = 20Ω، R₃ = 30Ω به صورت موازی</p>
-                            <p><strong>محاسبه مقاومت کل:</strong></p>
-                            <p>1/R<sub>total</sub> = 1/10 + 1/20 + 1/30</p>
-                            <p>1/R<sub>total</sub> = 6/60 + 3/60 + 2/60 = 11/60</p>
-                            <p class="formula-box">R<sub>total</sub> = 60/11 ≈ 5.45Ω</p>
-                            <p><strong>اگر V = 12V اعمال شود:</strong></p>
-                            <p>I₁ = 12 / 10 = 1.2A</p>
-                            <p>I₂ = 12 / 20 = 0.6A</p>
-                            <p>I₃ = 12 / 30 = 0.4A</p>
-                            <p>I<sub>total</sub> = 1.2 + 0.6 + 0.4 = 2.2A</p>
-                            <p>بررسی: R<sub>total</sub> = 12 / 2.2 ≈ 5.45Ω ✓</p>
+
+                        <div class="history-item">
+                            <h3>گوستاو رابرت کیرشهوف (1824-1887)</h3>
+                            <p>
+                                گوستاو کیرشهوف فیزیک‌دان آلمانی بود که سهم قابل توجهی در درک مدارهای الکتریکی داشت. 
+                                در سال 1845، در حالی که هنوز دانشجو بود، دو قانون اساسی را فرموله کرد که به نام او نامگذاری شده‌اند:
+                            </p>
+                            <ul>
+                                <li><strong>قانون جریان کیرشهوف (KCL):</strong> مجموع جریان‌های ورودی به یک گره 
+                                برابر با مجموع جریان‌های خروجی از آن است.</li>
+                                <li><strong>قانون ولتاژ کیرشهوف (KVL):</strong> مجموع افت‌های ولتاژ در هر حلقه بسته برابر با صفر است.</li>
+                            </ul>
+                            <p>
+                                این قوانین به ترتیب بر اساس اصول اساسی بقای بار و بقای انرژی هستند. 
+                                آنها ابزارهای ضروری برای تحلیل مدارهای الکتریکی پیچیده محسوب می‌شوند.
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Creators Section -->
+            <section id="creators" class="content-section">
+                <div class="creators-container">
+                    <h2>سازندگان پروژه</h2>
+                    <div class="creator-card">
+                        <div class="creator-header">
+                            <div class="creator-avatar">
+                                <span>MB</span>
+                            </div>
+                            <div class="creator-info">
+                                <h3>میلاد بابو</h3>
+                                <p class="creator-role">دانشجو - ترم 5</p>
+                            </div>
+                        </div>
+                        <div class="creator-details">
+                            <div class="detail-item">
+                                <span class="detail-label">دانشگاه:</span>
+                                <span class="detail-value">دانشگاه آزاد اسلامی</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">درس:</span>
+                                <span class="detail-value">مدار الکتریکی</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">استاد:</span>
+                                <span class="detail-value">دکتر میلاد ناظری</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">نوع پروژه:</span>
+                                <span class="detail-value">اپلیکیشن وب آموزشی</span>
+                            </div>
+                        </div>
+                        <div class="project-description">
+                            <p>
+                                این پلتفرم آموزشی برای کمک به دانشجویان در درک 
+                                قوانین و اصول اساسی مدارهای الکتریکی از طریق ماشین‌حساب‌های تعاملی 
+                                و محتوای آموزشی جامع طراحی شده است.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
     <script src="lab.js"></script>
 </body>
 </html>
-
